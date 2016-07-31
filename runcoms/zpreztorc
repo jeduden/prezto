@@ -171,6 +171,8 @@ zstyle ':prezto:module:terminal:tab-title' format '%m: %s'
 # Integrate with iTerm2.
 zstyle ':prezto:module:tmux:iterm' integrate 'yes'
 
+zstyle ':prezto:load' module 'iterm2-shell-integration'
+
 bindkey -M vicmd '?' history-incremental-search-backward
 bindkey -M vicmd '/' history-incremental-search-forward
 

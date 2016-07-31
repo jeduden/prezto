@@ -13,3 +13,5 @@ fi
 # Customize to your needs...
 export KEYTIMEOUT=1
 export VIRTUAL_ENV_DISABLE_PROMPT=1
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
