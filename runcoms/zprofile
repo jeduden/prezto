@@ -73,6 +73,16 @@ fi
 
 TMPPREFIX="${TMPDIR%/}/zsh"
 
+unameOut="$(uname -s)"
+case "${unameOut}" in
+    Linux*)     machine=Linux;;
+    Darwin*)    machine=Mac;;
+    CYGWIN*)    machine=Cygwin;;
+    MINGW*)     machine=MinGw;;
+    *)          machine="UNKNOWN:${unameOut}"
+esac
+
+if [[ "${machine}" == "Mac" ]]; then
 # Setting PATH for Python 3.6
 # The original version is saved in .zprofile.pysave
 PATH="/Library/Frameworks/Python.framework/Versions/3.6/bin:${PATH}"
@@ -92,3 +102,15 @@ export PATH
 # The original version is saved in .zprofile.pysave
 PATH="/Library/Frameworks/Python.framework/Versions/3.7/bin:${PATH}"
 export PATH
+fi
+
+if [[ "$machine" == "Linux" ]]; then
+alias open=xdg-open
+
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
+# kitty + complete setup zsh | source /dev/stdin
+export LUA_PATH='/usr/share/lua/5.4/?.lua;/usr/share/lua/5.4/?/init.lua;/usr/lib/lua/5.4/?.lua;/usr/lib/lua/5.4/?/init.lua;./?.lua;./?/init.lua;/home/jeduden/.luarocks/share/lua/5.4/?.lua;/home/jeduden/.luarocks/share/lua/5.4/?/init.lua'
+export LUA_CPATH='/usr/lib/lua/5.4/?.so;/usr/lib/lua/5.4/loadall.so;./?.so;/home/jeduden/.luarocks/lib/lua/5.4/?.so'
+export PATH='/home/jeduden/.luarocks/bin:/home/jeduden/.nvm/versions/node/v10.16.0/bin:/home/jeduden/.local/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/var/lib/snapd/snap/bin:/home/jeduden/Android/Sdk/platform-tools'
+fi
